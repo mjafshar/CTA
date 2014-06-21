@@ -11,7 +11,8 @@ class Stop < ActiveRecord::Base
     routes = '' if routes == nil
     routes = routes.scan(/\w+/).to_a
     routes.each do |route|
-      self.routes << Route.create(route_number: route)
+      stop_route = Route.where(route_number: route).first || Route.create(route_number: route)
+      self.routes << stop_route
     end
   end
 end
