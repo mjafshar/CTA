@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>CTA Routes</h1>
+  <% @routes.each do |route| %>
+    <%= link_to route do %>
+      <div class="route_num"><%= route.route_number %></div>
+    <% end %>
+  <% end %>
+</div>
