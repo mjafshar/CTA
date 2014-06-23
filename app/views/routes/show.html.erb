@@ -1,16 +1,16 @@
 <div class="container">
   <h1>CTA Routes</h1>
-  <h3><%= @route.route_number %></h3>
+  <h3>Route <%= @route.route_number %></h3>
 
   <table class="table table-bordered table-striped">
-    <tr>
+    <thead>
       <th>Stop</th>
       <th>Street Name</th>
       <th>Cross Street</th>
       <th>Boardings</th>
       <th>Alightings</th>
       <th>Routes</th>
-    </tr>
+    </thead>
     <% @stops.each do |stop| %>
       <%= render 'route_row', :stop => stop %>
     <% end %>
