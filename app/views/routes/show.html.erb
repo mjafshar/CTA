@@ -2,14 +2,14 @@
   <h1>CTA Routes</h1>
   <h3>Route <%= @route.route_number %></h3>
 
-  <table class="table table-bordered table-striped">
+  <table class="table">
     <thead>
-      <th>Stop</th>
-      <th>Street Name</th>
-      <th>Cross Street</th>
-      <th>Boardings</th>
-      <th>Alightings</th>
-      <th>Routes</th>
+      <th><%= sortable "stop_id", "Stop" %></th>
+      <th><%= sortable "on_street", "Street Name" %></th>
+      <th><%= sortable "cross_street", "Cross Street" %></th>
+      <th><%= sortable "boardings", "Boardings" %></th>
+      <th><%= sortable "alightings", "Alightings" %></th>
+      <th><%= sortable "Routes" %></th>
     </thead>
     <% @stops.each do |stop| %>
       <%= render 'route_row', :stop => stop %>
