@@ -1,6 +1,6 @@
 <div class="container">
   <h1>CTA Routes</h1>
-  <%= @route.route_number %>
+  <h3><%= @route.route_number %></h3>
 
   <table class="table table-bordered table-striped">
     <tr>
@@ -12,8 +12,8 @@
       <th>Routes</th>
     </tr>
     <% @stops.each do |stop| %>
-      <%= render 'stop_row', :stop => stop %>
+      <%= render 'route_row', :stop => stop %>
     <% end %>
-    <%= will_paginate @stop_pages %>
   </table>
+  <%= will_paginate @stop_pages %>
 </div>
