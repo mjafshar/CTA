@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>CTA Stops</h1>
+
+  <table class="table">
+    <thead>
+      <th><%= sortable "stop_id", "Stop" %></th>
+      <th><%= sortable "on_street", "Street Name" %></th>
+      <th><%= sortable "cross_street", "Cross Street" %></th>
+      <th><%= sortable "boardings", "Boardings" %></th>
+      <th><%= sortable "alightings", "Alightings" %></th>
+      <th><%= sortable "Routes" %></th>
+    </thead>
+    <% @stops.each do |stop| %>
+      <%= render 'stop_row', :stop => stop %>
+    <% end %>
+  </table>
+  <%= will_paginate @stop_pages %>
+</div>
