@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Stop <%= @stop.stop_id %></h1>
+  <h3><%= "#{@stop.on_street} and #{@stop.cross_street}" %></h3>
+  <h3>
+    <% @stop.routes.each do |route| %>
+      <%= link_to route do %>
+        <div class="route_num"><%= route.route_number %></div>
+      <% end %>
+    <% end %>
+  </h3>
+</div>
