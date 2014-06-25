@@ -17,6 +17,18 @@ class StopsController < ApplicationController
 
   def show
     @stop = Stop.find(params[:id])
+
+    @chart = LazyHighCharts::HighChart.new('bar') do |f|
+      f.title(:text => "Alightings and Boardings")
+      f.xAxis(:categories => ['Alightings', 'Boardings'])
+      f.series(:showInLegend => false, :yAxis => 0, :data => [@stop.alightings, @stop.boardings], :color => '#2e6ab1')
+
+      f.yAxis [
+        {:title => {:text => "Passengers"} },
+      ]
+
+      f.chart({:defaultSeriesType => "bar", :height => 200})
+    end
   end
 
   private

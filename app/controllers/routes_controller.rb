@@ -2,17 +2,35 @@ class RoutesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @routes = Route.all
+    all_routes = Route.all
+    chart_data = {stops: [], route: []}
 
     if params[:sort] == 'Stops'
-      routes = @routes.joins(:stops).group("routes.id").order("COUNT(#{sort_column}) #{sort_direction}")
+      sorted_routes = all_routes.joins(:stops).group("routes.id").order("COUNT(Stops) #{sort_direction}")
+      sorted_routes.each { |route| chart_data[:stops] << route.stops.count; chart_data[:route] << "Route #{route.route_number}" }
     else
-      routes = @routes.order("#{sort_column} #{sort_direction}")
+      if params[:direction] == 'asc'
+        sorted_routes = all_routes.sort { |a, b| a.route_number.scan(/\d+/).first.to_i <=> b.route_number.scan(/\d+/).first.to_i }
+        sorted_routes.each { |route| chart_data[:stops] << route.stops.count; chart_data[:route] << "Route #{route.route_number}" }
+      else
+        sorted_routes = all_routes.sort { |a, b| b.route_number.scan(/\d+/).first.to_i <=> a.route_number.scan(/\d+/).first.to_i }
+        sorted_routes.each { |route| chart_data[:stops] << route.stops.count; chart_data[:route] << "Route #{route.route_number}" }
+      end
     end
 
-    page_num = params[:page]
-    @routes = routes.page(page_num)
-    @route_pages = routes.paginate(:page => page_num)
+
+    @chart = LazyHighCharts::HighChart.new('bar') do |f|
+      f.title(:text => "Stops Per Route")
+      f.xAxis(:categories => chart_data[:route])
+      f.series(:showInLegend => false, :name => "Number of Stops", :yAxis => 0, :data => chart_data[:stops], :color => '#2e6ab1')
+
+      f.yAxis [
+        {:title => {:text => "Number of Stops"} },
+        {:title => {:text => "Number of Stops"}, :opposite => true},
+      ]
+
+      f.chart({:defaultSeriesType => "bar", :height => 4000})
+    end
   end
 
   def show
@@ -32,9 +50,10 @@ class RoutesController < ApplicationController
   private
 
   def sort_column
-    table_columns = Route.column_names.to_a
-    columns = table_columns + ['Stops']
-    columns.include?(params[:sort]) ? params[:sort] : table_columns.first
+
+    stop_columns = Stop.column_names.to_a
+    columns = stop_columns + ['Stops', 'Routes']
+    columns.include?(params[:sort]) ? params[:sort] : 'stop_id'
   end
 
   def sort_direction
