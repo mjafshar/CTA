@@ -1,14 +1,5 @@
 <div class="container">
   <h3>All Routes</h3>
-
-  <table class="table">
-    <thead>
-      <th id='route_num'><p><%= sortable "route_number", "Route Number" %></p></th>
-      <th id='stop_count'><p><%= sortable "Stops", "Stops" %></p></th>
-    </thead>
-    <% @routes.each do |route| %>
-      <%= render 'route_row', :route => route %>
-    <% end %>
-  </table>
-  <%= will_paginate @route_pages %>
+  <p id='route_sorting'>Sort by <%= sortable "route_number", "route number" %> or <%= sortable "Stops", "number of stops" %></p>
+  <%= high_chart("chart", @chart) %>
 </div>

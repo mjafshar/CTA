@@ -39,3 +39,4 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'will_paginate', '~> 3.0'
+gem 'lazy_high_charts'

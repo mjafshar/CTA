@@ -1,8 +1,7 @@
 <div class="container">
   <h2>Stop <%= @stop.stop_id %></h2>
   <h3><%= "#{@stop.on_street} and #{@stop.cross_street}" %></h3>
-
-  <%= content_tag :div, "", id: "orders_chart", data: {info: [@stop.alightings, @stop.boardings]} %>
+  <%= high_chart("chart", @chart) %>
 
   <h3>Routes</h3>
   <% @stop.routes.each do |route| %>
