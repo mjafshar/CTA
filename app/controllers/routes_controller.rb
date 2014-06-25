@@ -50,9 +50,8 @@ class RoutesController < ApplicationController
   private
 
   def sort_column
-
     stop_columns = Stop.column_names.to_a
-    columns = stop_columns + ['Stops', 'Routes']
+    columns = stop_columns + ['Stops', 'Routes', 'route_number']
     columns.include?(params[:sort]) ? params[:sort] : 'stop_id'
   end
 
