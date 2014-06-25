@@ -188,3 +188,12 @@ table td.text {
 *:first-child + html .pagination {
   overflow: hidden;
 }
+
+div#search {
+  clear: both;
+  padding: 1px 0px;
+}
+
+#notice {
+  color: red;
+}

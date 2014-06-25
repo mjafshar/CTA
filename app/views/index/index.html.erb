@@ -1,7 +1,21 @@
 <div class="container">
+  <h3>Choose a route...</h3>
+
   <% @routes.each do |route| %>
     <%= link_to route do %>
       <div class="route_num"><%= route.route_number %></div>
     <% end %>
+  <% end %>
+
+  <div id='search'>
+    <h3>...or search for a stop...</h3>
+    <%= form_tag("/search", method: "get") do %>
+      <%= label_tag(:stop_id, "Search for:") %>
+      <%= text_field_tag(:stop_id) %>
+      <%= submit_tag("Search") %>
+    <% end %>
+  </div>
+  <% if flash[:notice] %>
+    <p id='notice'><%= flash[:notice] %></p>
   <% end %>
 </div>

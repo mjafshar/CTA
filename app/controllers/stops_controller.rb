@@ -16,7 +16,8 @@ class StopsController < ApplicationController
   end
 
   def show
-    @stop = Stop.find(params[:id])
+    id = params[:id] == 'find' ? params[:stop_id] : params[:id]
+    @stop = Stop.find(id)
 
     @chart = LazyHighCharts::HighChart.new('bar') do |f|
       f.title(:text => "Alightings and Boardings")
@@ -28,6 +29,15 @@ class StopsController < ApplicationController
       ]
 
       f.chart({:defaultSeriesType => "bar", :height => 200})
+    end
+  end
+
+  def search
+    if Stop.where(stop_id: params[:stop_id]).first
+      stop = Stop.where(stop_id: params[:stop_id]).first
+      redirect_to stop_path(stop)
+    else
+      redirect_to root_path, notice: "Invalid stop number"
     end
   end
 
