@@ -2,7 +2,17 @@ class RoutesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @routes = Route.all.sort { |a, b| a.route_number.scan(/\d+/).first.to_i <=> b.route_number.scan(/\d+/).first.to_i }
+    @routes = Route.all
+
+    if params[:sort] == 'Stops'
+      routes = @routes.joins(:stops).group("routes.id").order("COUNT(#{sort_column}) #{sort_direction}")
+    else
+      routes = @routes.order("#{sort_column} #{sort_direction}")
+    end
+
+    page_num = params[:page]
+    @routes = routes.page(page_num)
+    @route_pages = routes.paginate(:page => page_num)
   end
 
   def show
@@ -22,8 +32,9 @@ class RoutesController < ApplicationController
   private
 
   def sort_column
-    columns = Stop.column_names.to_a + ['Routes']
-    columns.include?(params[:sort]) ? params[:sort] : "stop_id"
+    table_columns = Route.column_names.to_a
+    columns = table_columns + ['Stops']
+    columns.include?(params[:sort]) ? params[:sort] : table_columns.first
   end
 
   def sort_direction

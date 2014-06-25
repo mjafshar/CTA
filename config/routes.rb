@@ -2,5 +2,5 @@ Rails.application.routes.draw do
   resources :routes
   resources :stops
 
-  root :to => 'routes#index'
+  root :to => 'index#index'
 end

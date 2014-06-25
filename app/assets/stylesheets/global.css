@@ -1,8 +1,24 @@
 .container {
-  margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+  margin: 0px auto;
+  width: 60%;
+  padding: 50px 20px 20px 20px;
+}
+
+.navbar {
+  margin: -2px auto;
+  width: 100%;
+  height: 40px;
+  padding: 2px 20px;
+  background-color: #2e6ab1;
+  position: fixed;
+  line-height: 40px;
+  font-size: 20px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  vertical-align: middle;
 }
 
 .route_num {
@@ -13,79 +29,156 @@
   border: 1px solid black;
   text-align: center;
   float: left;
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 4px;
+  background: #2e6ab1;
+}
+
+.route_num:hover {
+  color: #000000;
+  background: lightgray;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  margin: 0px auto;
+}
+table a {
+  text-decoration: none;
+  color: white;
+}
+
+table th {
+  font-size: 14px;
+  text-align: left;
+  background: #2e6ab1;
+  border-bottom: 2px solid #000000;
+}
+
+th p {
+  width: 80%;
+  margin: 5px auto;
+}
+
+table th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+table th .asc {
+  background-image: url(/images/up_arrow.png);
+}
+
+table th .desc {
+  background-image: url(/images/down_arrow.png);
+}
+
+th#stop {
+  width: 8%;
+}
+th#street {
+  width: 22%;
+}
+th#cross {
+  width: 30%;
+}
+th#board {
+  width: 15%;
+}
+th#alight {
+  width: 15%;
+}
+th#route {
+  width: 10%;
+}
+
+table tr:hover {
+  background: lightgray;
+}
+
+table td {
+  padding: 10px 30px;
+  font-size: 12px;
+  border-bottom: 1px solid #000000;
+}
+
+table td.number {
+  text-align: right;
+}
+
+table td.text {
+  text-align: left;
 }
 
 .pagination {
   background: white;
   cursor: default;
-  /* self-clearing method: */ }
+  margin: 8px auto;
+  /* self-clearing method: */
+}
+
 .pagination a, .pagination span, .pagination em {
   padding: 0.2em 0.5em;
   display: block;
   float: left;
-  margin-right: 1px; }
+  margin-right: 1px;
+}
+
 .pagination .disabled {
   color: #999999;
-  border: 1px solid #dddddd; }
+  border: 1px solid #dddddd;
+}
+
 .pagination .current {
   font-style: normal;
   font-weight: bold;
   background: #2e6ab1;
   color: white;
-  border: 1px solid #2e6ab1; }
+  border: 1px solid #000000;
+}
+
 .pagination a {
   text-decoration: none;
-  color: #105cb6;
-  border: 1px solid #9aafe5; }
+  color: #000000;
+  border: 1px solid #000000;
+}
+
 .pagination a:hover, .pagination a:focus {
-    color: #000033;
-    border-color: #000033; }
+  color: #000000;
+  border-color: #000000;
+  background: lightgray;
+}
+
 .pagination .page_info {
   background: #2e6ab1;
   color: white;
   padding: 0.4em 0.6em;
   width: 22em;
   margin-bottom: 0.3em;
-  text-align: center; }
+  text-align: center;
+}
+
 .pagination .page_info b {
-  color: #000033;
+  color: #000000;
   background: #6aa6ed;
-  padding: 0.1em 0.25em; }
+  padding: 0.1em 0.25em;
+}
+
 .pagination:after {
   content: ".";
   display: block;
   height: 0;
   clear: both;
-  visibility: hidden; }
+  visibility: hidden;
+}
+
 * html .pagination {
-  height: 1%; }
+  height: 1%;
+}
+
 *:first-child + html .pagination {
-  overflow: hidden; }
-
-.table th {
-  color: black;
-}
-
-.table tr {
-  color: #105cb6;
-  outline: 1px solid #9aafe5;
-}
-
-.table tr:hover {
-  color: #000033;
-  /*outline-color: #000033;*/
-}
-
-.table th .current {
-  padding-right: 12px;
-  background-repeat: no-repeat;
-  background-position: right center;
-}
-
-.table th .asc {
-  background-image: url(/images/up_arrow.gif);
-}
-
-.table th .desc {
-  background-image: url(/images/down_arrow.gif);
+  overflow: hidden;
 }

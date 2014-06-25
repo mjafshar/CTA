@@ -1,0 +1,7 @@
+<div class="container">
+  <% @routes.each do |route| %>
+    <%= link_to route do %>
+      <div class="route_num"><%= route.route_number %></div>
+    <% end %>
+  <% end %>
+</div>

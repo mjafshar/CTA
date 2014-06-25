@@ -1,0 +1,10 @@
+<tr onmouseover="this.style.cursor='pointer';"
+onclick="location.href='<%= stop_path(stop) %>';"
+style="cursor: pointer;">
+  <td class="number"><%= stop.stop_id %></td>
+  <td class="text"><%= stop.on_street %></td>
+  <td class="text"><%= stop.cross_street %></td>
+  <td class="number"><%= stop.boardings %></td>
+  <td class="number"><%= stop.alightings %></td>
+  <td class="number"><%= stop.routes.count %></td>
+</tr>
