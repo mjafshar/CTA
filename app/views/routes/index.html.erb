@@ -1,8 +1,14 @@
 <div class="container">
-  <h1>CTA Routes</h1>
-  <% @routes.each do |route| %>
-    <%= link_to route do %>
-      <div class="route_num"><%= route.route_number %></div>
+  <h3>All Routes</h3>
+
+  <table class="table">
+    <thead>
+      <th id='route_num'><p><%= sortable "route_number", "Route Number" %></p></th>
+      <th id='stop_count'><p><%= sortable "Stops", "Stops" %></p></th>
+    </thead>
+    <% @routes.each do |route| %>
+      <%= render 'route_row', :route => route %>
     <% end %>
-  <% end %>
+  </table>
+  <%= will_paginate @route_pages %>
 </div>
