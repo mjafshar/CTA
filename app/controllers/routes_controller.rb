@@ -9,13 +9,8 @@ class RoutesController < ApplicationController
       sorted_routes = all_routes.joins(:stops).group("routes.id").order("COUNT(Stops) #{sort_direction}")
       sorted_routes.each { |route| chart_data[:stops] << route.stops.count; chart_data[:route] << "Route #{route.route_number}" }
     else
-      if params[:direction] == 'asc'
-        sorted_routes = all_routes.sort { |a, b| a.route_number.scan(/\d+/).first.to_i <=> b.route_number.scan(/\d+/).first.to_i }
-        sorted_routes.each { |route| chart_data[:stops] << route.stops.count; chart_data[:route] << "Route #{route.route_number}" }
-      else
-        sorted_routes = all_routes.sort { |a, b| b.route_number.scan(/\d+/).first.to_i <=> a.route_number.scan(/\d+/).first.to_i }
-        sorted_routes.each { |route| chart_data[:stops] << route.stops.count; chart_data[:route] << "Route #{route.route_number}" }
-      end
+      sorted_routes = sort_routes(sort_direction)
+      sorted_routes.each { |route| chart_data[:stops] << route.stops.count; chart_data[:route] << "Route #{route.route_number}" }
     end
 
 
@@ -52,10 +47,19 @@ class RoutesController < ApplicationController
   def sort_column
     stop_columns = Stop.column_names.to_a
     columns = stop_columns + ['Stops', 'Routes', 'route_number']
-    columns.include?(params[:sort]) ? params[:sort] : 'stop_id'
+    columns.include?(params[:sort]) ? params[:sort] : 'first'
   end
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def sort_routes(direction)
+    if direction == 'asc'
+      routes = Route.all.sort { |a, b| a.route_number.scan(/\d+/).first.to_i <=> b.route_number.scan(/\d+/).first.to_i }
+    else
+      routes = Route.all.sort { |a, b| b.route_number.scan(/\d+/).first.to_i <=> a.route_number.scan(/\d+/).first.to_i }
+    end
+    routes
   end
 end
