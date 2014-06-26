@@ -9,4 +9,9 @@
       <div class="route_num"><%= route.route_number %></div>
     <% end %>
   <% end %>
+  <%= content_tag :div, "", id: "stop_coords", data: {info: [@stop.latitude, @stop.longitude]} %>
+  <div id="map_canvas">
+    <div id="map">
+    </div>
+  </div>
 </div>
