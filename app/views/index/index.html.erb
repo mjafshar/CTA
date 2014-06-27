@@ -12,7 +12,7 @@
     <%= form_tag("/search", method: "get") do %>
       <%= label_tag(:stop_id, "Search for:") %>
       <%= text_field_tag(:stop_id) %>
-      <%= submit_tag("Search") %>
+      <%= submit_tag "Search", class: 'submit_button' %>
     <% end %>
   </div>
   <% if flash[:notice] %>
