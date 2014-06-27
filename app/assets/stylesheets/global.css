@@ -56,6 +56,19 @@ div#right {
   background: lightgray;
 }
 
+.submit_button {
+  border: 1px solid black;
+  text-align: center;
+  border-radius: 4px;
+  background: #2e6ab1;
+  color: #ffffff;
+}
+
+.submit_button:hover {
+  color: #000000;
+  background: lightgray;
+}
+
 #route_sorting a {
   text-decoration: none;
   color: #2e6ab1;
